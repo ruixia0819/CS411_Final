@@ -1,0 +1,21 @@
+name,categories,address,image_url,avg_price
+Kohinoor Indian Restaurant and Lounge,"[Category(name='Indian', alias='indpak')]",6 E Columbia Ave,https://s3-media2.fl.yelpcdn.com/bphoto/KA87nBehqI-RuaZe9HyqQg/ms.jpg,4
+Maize Mexican Grill,"[Category(name='Mexican', alias='mexican')]",60 E Green St,https://s3-media4.fl.yelpcdn.com/bphoto/G7nPGxNC3L0HdKHbKOVLbQ/ms.jpg,2
+Hamilton Walker's,"[Category(name='Seafood', alias='seafood'), Category(name='Steakhouses', alias='steak'), Category(name='Bars', alias='bars')]",201 N Neil St,https://s3-media1.fl.yelpcdn.com/bphoto/mEERBB0PZQzNfoltuikRSA/ms.jpg,4
+Watson's Shack & Rail,"[Category(name='Bars', alias='bars'), Category(name='American (Traditional)', alias='tradamerican')]",211 N Neil St,https://s3-media2.fl.yelpcdn.com/bphoto/EOi23bd-G0F_xluUtagKNA/ms.jpg,3
+Black Dog Smoke & Ale House,"[Category(name='Barbeque', alias='bbq'), Category(name='Bars', alias='bars')]",320 N Chestnut St,https://s3-media3.fl.yelpcdn.com/bphoto/mAVNqV0bSQghdGIUAMLyUw/ms.jpg,1
+Seven Saints,"[Category(name='American (Traditional)', alias='tradamerican'), Category(name='Pubs', alias='pubs'), Category(name='Lounges', alias='lounges')]",32 E Chester St,https://s3-media3.fl.yelpcdn.com/bphoto/5KHSTjkqsSgrGEZLJ9VxzA/ms.jpg,4
+San Maru,"[Category(name='Korean', alias='korean')]",2504 Village Green Pl,https://s3-media4.fl.yelpcdn.com/bphoto/8h3CEJdXZebTrIGd7Gl1gQ/ms.jpg,2
+Miga,"[Category(name='American (New)', alias='newamerican'), Category(name='Asian Fusion', alias='asianfusion'), Category(name='Desserts', alias='desserts')]",301 N Neil St,https://s3-media3.fl.yelpcdn.com/bphoto/yRBf5ED43aQUa2PT5Xft0A/ms.jpg,3
+Bacaro,"[Category(name='American (New)', alias='newamerican'), Category(name='Italian', alias='italian'), Category(name='Lounges', alias='lounges')]",113 N Walnut St,https://s3-media1.fl.yelpcdn.com/bphoto/LC45U-HLfVw3hgqEpy1MYg/ms.jpg,2
+Scotty's Brewhouse,"[Category(name='American (Traditional)', alias='tradamerican'), Category(name='Salad', alias='salad'), Category(name='Soup', alias='soup')]",2001 S Neil St,https://s3-media3.fl.yelpcdn.com/bphoto/gNPrksN5B0ZTUyiyxZtuhw/ms.jpg,4
+Mashawi Grill,"[Category(name='Mediterranean', alias='mediterranean'), Category(name='Arabian', alias='arabian')]",617 E Green St,https://s3-media2.fl.yelpcdn.com/bphoto/pBfgICxEaCPHZosIFp6cTA/ms.jpg,2
+Golden Harbor Authentic Chinese Cuisine,"[Category(name='Chinese', alias='chinese'), Category(name='Taiwanese', alias='taiwanese')]",505 S Neil St,https://s3-media3.fl.yelpcdn.com/bphoto/BpIL_WrRVh43QoQt3TTG2w/ms.jpg,2
+V Picasso,"[Category(name='Wine Bars', alias='wine_bars'), Category(name='American (New)', alias='newamerican')]",122 N Neil St,https://s3-media1.fl.yelpcdn.com/bphoto/uG5P0NpoHrjOwUpUkRXfHg/ms.jpg,2
+Nando Milano Trattoria,"[Category(name='Italian', alias='italian')]",204 N Neil St,https://s3-media4.fl.yelpcdn.com/bphoto/CSZeykwpO-Quy7_R8xsAag/ms.jpg,1
+Destihl Restaurant & Brew Works,"[Category(name='American (New)', alias='newamerican'), Category(name='Gluten-Free', alias='gluten_free'), Category(name='Breakfast & Brunch', alias='breakfast_brunch')]",301 N Neil St,https://s3-media1.fl.yelpcdn.com/bphoto/itAKUSMr9tD13qhtAJI6GQ/ms.jpg,2
+Mid-Summer Lounge,"[Category(name='Lounges', alias='lounges'), Category(name='Chinese', alias='chinese')]",623 E Green St,https://s3-media1.fl.yelpcdn.com/bphoto/zCP_7CFeWD7TOL2ELtY1LA/ms.jpg,4
+Baxter's American Grille,"[Category(name='American (Traditional)', alias='tradamerican'), Category(name='Steakhouses', alias='steak'), Category(name='Burgers', alias='burgers')]",100 Trade Centre Dr,https://s3-media2.fl.yelpcdn.com/bphoto/Db7GGTLSfCl3EKzQ5csqOA/ms.jpg,1
+Sakanaya Restaurant,"[Category(name='Japanese', alias='japanese'), Category(name='Sushi Bars', alias='sushi')]",403 E Green St,https://s3-media2.fl.yelpcdn.com/bphoto/e0EPlY2beHjyc0dwR36ycQ/ms.jpg,1
+The Hub,"[Category(name='Sports Bars', alias='sportsbars'), Category(name='American (Traditional)', alias='tradamerican')]",601 S 1st St,https://s3-media3.fl.yelpcdn.com/bphoto/-Gxyr75hIbQpzlzwCKIO-Q/ms.jpg,3
+Cravings,"[Category(name='Chinese', alias='chinese'), Category(name='Asian Fusion', alias='asianfusion'), Category(name='Malaysian', alias='malaysian')]",603 S Wright St,https://s3-media3.fl.yelpcdn.com/bphoto/N4mVdhIilXEgnmP68Q33Dg/ms.jpg,1

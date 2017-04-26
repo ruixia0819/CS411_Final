@@ -1,0 +1,370 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>QueenOfLibra</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Can not design what to eat? We made the decision for you" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/twitter.css" rel="stylesheet" />
+<link href="css/main5152.css" rel="stylesheet" />
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,100,100italic,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<style>
+    #map {
+        /*margin-bottom:7em;*/
+    height: 80%;
+    width:80%;
+    /*position: center;*/
+      }
+     
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+</style>
+</head>
+	
+<body>
+<!-- banner -->
+	<div class="banner1">
+		<div class="container">
+			<!-- header -->
+			<div class="header">
+				<div class="header-left">
+					<!-- <a href="index.html"><i class="glyphicon glyphicon-leaf" aria-hidden="true"> </i>Welcome <span><?php echo $_SESSION['user_name'];?></span></a> -->
+					<a href="index.html"><i class="glyphicon glyphicon-leaf" aria-hidden="true"> </i>Welcome <span><?php echo $_SESSION['user_name'];?></span></a>
+				</div>
+				<div class="header-left1">
+					<span class="menu"><img src="images/menu.png" alt=" "></span>
+					<ul class="nav1">
+						<li class="hvr-sweep-to-bottom"><a href="index.html">Home<i class="glyphicon glyphicon-home" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Login.php">Login<i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="community.php">Community<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Login.php">Function<i class="glyphicon glyphicon-picture" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Account.php">My Account<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+				<div class = "header-left">
+				<form  id='log_out' action='query1.php', method="post">
+							<input name='logout_button' type="submit" value="Log Out">
+						</form>
+						</div>
+				<div class="clearfix"> </div>
+			</div>
+	    </div>
+    </div>
+    <!--<?php echo json_encode($peoples)?>-->
+    <!--<map>-->
+  
+        <div class="contact container" id="map">Dinning Map</div>
+        <p id="demo"></p>
+	        <script>
+			  function initMap() {
+			  
+			    var map = new google.maps.Map(document.getElementById('map'), {
+			      zoom: 14,
+			     // center: {lat: -33, lng: 151},
+			      mapTypeId: google.maps.MapTypeId.ROADMAP
+			    });
+
+			    //var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/coffee.png';
+			    //var image='http://maps.google.com/mapfiles/ms/micons/restaurant.png';
+			    var image="images/coffee.png";
+			    var image2="images/user-red.png";
+			    var image3="images/me.png";
+			    //var image = 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAj5AAAAJDIyN2NlYzlmLTdhMDctNDE2Yi04N2RmLTE4ZDc0YjIxYTc1OA.jpg';
+			    //var address = 'University of Illinois at Urbana-Champaign, 1301 W Springfield Ave, Urbana, IL 61801';
+			    var x=<?php echo json_encode($len)?>;
+			    //var address="";
+			    var address= <?php echo json_encode($addrs);?>;
+			    var res = <?php echo json_encode($restaurants)?>;
+			    var pos=[];
+			    var roadColors = ["#426289","#ec7063","#52be80","#884ea0","#f4d03f"];
+			    //var marker=new Array();
+			 //   var marker_lat= new Array(5);
+			 //   var marker_lng = new Array(5);
+			  //document.getElementById("demo").innerHTML =marker.length;
+			    //get self position
+			    var selfinfoWindow = new google.maps.InfoWindow;
+			 //   if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                selfinfoWindow.setPosition(pos);
+                selfinfoWindow.setContent('You are here.');
+                selfinfoWindow.open(map);
+                map.setCenter(pos);
+                var latlng = selfinfoWindow.getPosition();
+                
+                //insert php database code
+                
+                $.post("savePosition.php", {lat: position.coords.latitude, lng: position.coords.longitude});
+                }, function() {
+                    handleLocationError(true, selfinfoWindow, map.getCenter());
+                });
+                // } else {
+                // // Browser doesn't support Geolocation
+                //     handleLocationError(false, infoWindow, map.getCenter());
+                // }
+                //var latlng = inforWindow.getPosition();
+                //document.getElementById("demo").innerHTML = latlng.lat();
+			   //console.log(infoWindow.getPosition());
+			   /*
+			    * Set restaurant position
+			    */
+			    var j;
+			    for(j=0;j<x;++j){
+			        var geocoder=new google.maps.Geocoder();
+		            setMarker(map,geocoder,image,address[j],res[j]);
+			    }
+			    
+			   /*
+			    * Set inviters 
+                */
+                //document.getElementById("demo").innerHTML =marker_lat;
+                var p =<?php echo json_encode($sizeofPeople)?>;
+                
+                var pp=p/4;
+                
+                var people=<?php echo json_encode($peoples);?>;
+                var i;
+                for(i=0;i<pp;i++){
+                    var myLat=parseFloat(people[i*4+1]);
+			        var myLng=parseFloat(people[i*4+2]);
+			        
+			        var myLatLng= {lat:myLat, lng:myLng};
+			        var secret=people[i*4+0];
+			        var target=people[i*4+3];
+			        //var test=marker[3].getPosition().lat();
+			        
+			     //   var geocoder=new google.maps.Geocoder();
+			     //   var polyPath=null;
+			     //   geocoder.geocode( { 'address': address[marker_no]}, function(results, status) {
+	       //             polyPath=[
+			     //       {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()},
+			     //       {lat:myLat, lng:myLng}
+			     //       ];
+			     //       document.getElementById("demo").innerHTML =polyPath[1].lat;
+			            
+			            
+		      //      });
+			     //document.getElementById("demo").innerHTML =polyPath[0].lat;
+			     var color = roadColors[i%5];
+			     if(secret=="<?php echo $_SESSION['user_name'];?>"){
+			            setPeople(map,myLatLng,image3,"You are Here",target,color);
+			        }else{
+			            setPeople(map,myLatLng,image2,secret,target,color);
+			        }
+			        //setPeople(map,myLatLng,image2,secret,target,color);
+			        //drawPoly(map,polyPath);
+			       
+                }
+			   
+      }
+      function drawPoly(map,addr1,addr2,color){
+        //   var rendererOptions = {
+        //         map: map,
+                
+        //     }
+        //directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+          var directionsService = new google.maps.DirectionsService();
+          var directionsDisplay = new google.maps.DirectionsRenderer({
+                 preserveViewport: true,
+                suppressMarkers : true,
+                // directions: result,
+                // routeIndex: 1,
+                map: map,
+                polylineOptions:{
+                    strokeColor:color,
+                    strokeWeight: 5,
+                    strokeOpacity: 0.8
+                }
+            });
+          directionsDisplay.setMap(map);
+          var request = {
+          origin: addr1, 
+          destination: addr2,
+          travelMode: google.maps.DirectionsTravelMode.DRIVING
+         };
+    
+         directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+             directionsDisplay.setDirections(response);
+          }
+         });
+        // var Path = new google.maps.Polyline({
+        //   path: polyPath,
+        //   geodesic: true,
+        //   strokeColor: '#FF0000',
+        //   strokeOpacity: 1.0,
+        //   strokeWeight: 2
+        // });
+
+        // Path.setMap(map);
+      }
+      
+      function setPeople(map,myLatLng,image,secret,target,color){
+          var people = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: image
+            });
+            attachSecretMessage(people, secret);
+            // var geocoder=new google.maps.Geocoder();
+            
+            // geocoder.geocode( { 'address': target}, function(results, status) {
+            // //     if(secret=="You are Here"){
+			         ////   document.getElementById("demo").innerHTML =results[0].geometry.location.lat();}
+            //     if(status == 'OK'){
+	           //         var polyPath=[
+			         //   results[0].geometry.location,
+			         //   myLatLng
+			         //   ];
+			            
+			//alert(polyPath[1]);
+			            
+			            drawPoly(map,target,myLatLng,color);
+			           // document.getElementById("demo").innerHTML =secret;
+                // }
+        // });
+          
+      }
+      function setMarker(map,geocoder,image,address,res){
+        geocoder.geocode( { 'address': address}, function(results, status) {
+	        if (status == 'OK') {
+	            //map.setCenter(results[0].geometry.location);
+			    var marker = new google.maps.Marker({
+			        map: map,
+			        position: results[0].geometry.location,
+			        icon: image
+			    });
+			    var secret = res;
+			    attachSecretMessage(marker, secret);
+			    //pos[address] = results[0].geometry.location;
+		    } else {
+			    alert('Geocode was not successful for the following reason: ' + status);
+		    }
+		});
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+			  function attachSecretMessage(marker, secretMessage) {
+		  		var infowindow = new google.maps.InfoWindow({
+		   		content: secretMessage
+		  		});
+
+		  		marker.addListener('mousemove', function() {
+		    	infowindow.open(marker.get('map'), marker);
+		  		});
+			}
+	</script>
+	<!--<script src="js/jquery.googlemap.js"></script>-->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7dSA-eLmqzOG7F_4jQJZIelN-o4ufvqE&callback=initMap">
+	</script>
+    <!--</map>-->
+    
+    <!--<twitter-board>-->
+    
+    
+    <div class="page-container">
+                        <div class="container">
+                                <div class="row">
+
+                                        
+                                            <div class="span8 main-listing">
+                                                <h3>Post Wall</h3>
+                                                <!--<article class="format-standard type-post hentry clearfix">-->
+
+                                                <!--        <header class="clearfix">-->
+
+                                                <!--                <h3 class="post-title"><a>Integrating WordPress with Your Website</a></h3>-->
+
+                                                <!--                <div class="post-meta clearfix">-->
+                                                <!--                        <span class="author">erica</span>-->
+                                                <!--                        <span class="date">25 Feb, 2013</span>-->
+                                                <!--                        <span class="category">Server &amp; Database</span>-->
+                                                <!--                        <span class="comments">3 Comments</span>-->
+                                                <!--                        <span class="like-count">66</span>-->
+                                                <!--                </div><!-- end of post meta -->
+                                                                
+                                                <!--        </header>-->
+
+                                                <!--</article>-->
+                                                <?php echo $result; ?>
+                                            </div>
+                                        <!--</testing>-->
+                                </div>
+                        </div>
+                </div>
+
+    <!--</twitter-board>-->
+    <!--<footer>-->
+    <div class="footer">
+		<div class="container">				 	
+			<div class="col-md-2 ftr_navi ftr">
+				<h3>Navigation</h3>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="Login.php">Login</a></li>
+					<li><a href="register.php">Register</a></li>						
+					<li><a href="query1.php">Function</a></li>
+					<li><a href="Account.php">My Account</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 ftr_navi ftr">
+					 <h3>Team Memembers</h3>
+					 <ul>
+						 <li><a href="#">Rui Xia</a></li>
+						 <li><a href="#">Yang Liu</a></li>
+						 <li><a href="#">Anqi Mao</a></li>				
+						 <li><a href="#">Bo Zheng</a></li>
+						
+					 </ul>
+			</div>
+			<div class="col-md-3 get_in_touch ftr">
+				<h3>Get In Touch</h3>
+				<p>Teletubbies</p>
+				<p>University of Illinois, Urbana-Champaign</p>
+				<p>16279043307</p>
+				<a href="mailto:ruixia2@illinois.edu">ruixia2@illinois.edu</a>
+				<p>Copyright &copy; 2017.Teletubbies All rights reserved.<a target="_blank" </a></p>
+			</div>
+			<div class="col-md-4 ftr-logo">
+				<a href="index.html"><h3>Queen of Libra</h3></a>
+				<!-- <ul>
+					<li><a href="#" class="f"> </a></li>
+					<li><a href="#" class="f1"> </a></li>
+					<li><a href="#" class="f2"> </a></li>
+				</ul> -->
+				<p>Our application is designed to help you make decisions for deciding a place for meal, which helps those who has OCD in making food decision. Unlike common recipe recommendation App, we do not simply providing information to you, we are trying to make choice for you. It recommends restaurants for users based on preference Q&A and users' meal history.  </a></p>
+				
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>    
+    <!--</footer>-->
+    
+</body>
+</html>

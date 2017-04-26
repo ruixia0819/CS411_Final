@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QueenOfLibra</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Spa Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="css/fontello.css" type="text/css" media="all" />
+        
+<link rel="stylesheet" href="css/style_result.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/core.animation.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/shortcodes.min.css" type="text/css" media="all" />
+
+
+
+<link rel="stylesheet" href="css/skin.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/responsive.css" type="text/css" media="all" />
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,100,100italic,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+</head>
+	
+<body>
+<!-- banner -->
+	<div class="banner1">
+		<div class="container">
+			<!-- header -->
+			<div class="header">
+				<div class="header-left">
+					<a href="index.html"><i class="glyphicon glyphicon-leaf" aria-hidden="true"> </i>Welcome <span><?php echo $_SESSION['user_name'];?></span></a>
+				</div>
+				<div class="header-left1">
+					<span class="menu"><img src="images/menu.png" alt=" "></span>
+					<ul class="nav1">
+						<li class="hvr-sweep-to-bottom"><a href="index.html">Home<i class="glyphicon glyphicon-home" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Login.php">Login<i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="community.php">Community<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Login.php">Function<i class="glyphicon glyphicon-picture" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Account.php">My Account<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+				<div class = "header-left">
+				<form  id='log_out' action='query1.php', method="post">
+							<input name='logout_button' type="submit" value="Log Out">
+						</form>
+						</div>
+				<div class="clearfix"> </div>
+			</div>
+			<!-- script for menu -->
+				<script> 
+					$( "span.menu" ).click(function() {
+					$( "ul.nav1" ).slideToggle( 300, function() {
+					 // Animation complete.
+					});
+					});
+				</script>
+			<!-- //script for menu -->
+		</div>
+	</div>
+<!-- //banner -->
+
+<div class="home page body_style_wide body_filled article_style_stretch scheme_original top_panel_show top_panel_above sidebar_hide">
+					
+                                <!-- Welcome section -->
+                                <div class="hp1_welcome_section">
+                                    <div class="content_wrap">
+                                        <div class="columns_wrap">
+                                          <div class="column-1_2 sc_column_item sc_column_item_1 odd first">
+                                            <figure class="sc_image sc_image_shape_square">
+                                                <a href="#">
+                                                    <img src= <?php echo $_SESSION['r_rec_ima'] ?> height="500" width="500"> 
+                                                </a>
+                                            </figure>
+                                          </div><div class="column-1_2 sc_column_item sc_column_item_2 even">
+                                        <!-- Services section -->
+                                        <div class="sc_services_wrap">
+                                            <div class="sc_services sc_services_style_services-5 sc_services_type_icons sc_slider_nopagination sc_slider_nocontrols width_100_per" data-interval="5040" data-slides-min-width="250">
+                                                <h2 class="sc_services_title sc_item_title"><?php echo $_SESSION["r_rec_name"]?></h2>
+                                                <div class="sc_services_descr sc_item_descr"> </div>
+                                                <!-- Services item --><div class="sc_services_item sc_services_item_1 odd first">
+                                                    
+                                                    <a class="sc_icon "><img src="images/style.png" height="50" width="50"></a>
+                                                    <div class="sc_services_item_content">
+                                                        <h4 class="sc_services_item_title">
+                                                            <h3>Style</h3>
+                                                        </h4>
+                                                        <div class="sc_services_item_description">
+                                                            <h3><?php echo $_SESSION["r_rec_type"]?></h3>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /Services item --><!-- Services item --><div class="sc_services_item sc_services_item_2 even">
+                                                    <a class="sc_icon "><img src="images/price.png" height="50" width="50"></a>
+                                                    <div class="sc_services_item_content">
+                                                        <h4 class="sc_services_item_title">
+                                                            <h3 >Price Level</a></h3>
+                                                        <div class="sc_services_item_description">
+                                                            <h3><?php for($x=0; $x<$_SESSION["r_rec_pl"]; $x++){echo "$";}?></h3>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /Services item --><!-- Services item --><div class="sc_services_item sc_services_item_3 odd">
+                                                    <a class="sc_icon "><img src="images/rate.png" height="50" width="50"></a>
+                                                    <div class="sc_services_item_content">
+                                                        <h4 class="sc_services_item_title">
+                                                            <h3 >Rating Level</h3>
+                                                        </h3>
+                                                        <div class="sc_services_item_description">
+                                                            <h3><?php echo $_SESSION["r_rec_rating"]; echo "/5"?></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /Services item -->
+                                            </div>
+                                        </div>
+                                            </div>
+                                        <!-- /Services section -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-- /Welcome section -->
+
+		
+			<div class="blog-right">
+				
+				<div  class="login-form">
+				
+					
+					<!--<h4> Returned Restaurants: </h4>-->
+					
+
+                
+                 
+				<h4><?php
+			
+			    
+				//echo "//Debugging Information";
+				//echo "Number of results from query: ";
+			    //echo sizeof($_SESSION["r_name"]);
+			    //echo ":";
+			    //echo sizeof($_SESSION["r_name_query"]);
+				
+				//echo "<br/>";
+				//echo "Variable from python: ";
+				
+				//echo $_SESSION["python_var"];
+				//echo "<br/>";
+				
+				//echo  $_SESSION["sql_queryfinal"];
+				//echo sizeof($_SESSION["python_var"]);
+				//ehco  $_SESSION["query_final"];
+				
+
+				?></h4>
+
+            
+			<form  id='result' action='result.php', method="post">
+					
+
+						<div class="ckeck-bg">
+							<div class="checkbox-form">
+							<input name='back' type="submit" value="Try again">
+							<input name= 'change' type="submit" value="Change!">
+							<input name='go' type="submit" value="Go!">
+							
+							
+							<div class="clearfix"> </div>
+							</div>
+						</div>
+
+					</form>
+
+
+					
+				</div>
+				</div>
+
+				
+
+
+				
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+	</div> 
+<!-- //single -->
+
+</body>
+</html>

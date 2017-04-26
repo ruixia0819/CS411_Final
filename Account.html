@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QueenOfLibra</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Spa Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,100,100italic,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<!-- banner -->
+	<div class="banner1">
+		<div class="container">
+			<!-- header -->
+			<div class="header">
+				<div class="header-left">
+					<a href="index.html"><i class="glyphicon glyphicon-leaf" aria-hidden="true"> </i>Welcome <span><?php echo $_SESSION['user_name'];?></span></a>
+				</div>
+				<div class="header-left1">
+					<span class="menu"><img src="images/menu.png" alt=" "></span>
+					<ul class="nav1">
+						<li class="hvr-sweep-to-bottom"><a href="index.html">Home<i class="glyphicon glyphicon-home" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Login.php">Login<i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="community.php">Community<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Login.php">Function<i class="glyphicon glyphicon-picture" aria-hidden="true"></i></a></li>
+						<li class="hvr-sweep-to-bottom"><a href="Account.php">My Account<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+				<div class = "header-left">
+				<form  id='log_out' action='query1.php', method="post">
+							<input name='logout_button' type="submit" value="Log Out">
+						</form>
+						</div>
+				<div class="clearfix"> </div>
+				
+			</div>
+			<!-- script for menu -->
+				<script> 
+					$( "span.menu" ).click(function() {
+					$( "ul.nav1" ).slideToggle( 300, function() {
+					 // Animation complete.
+					});
+					});
+				</script>
+			<!-- //script for menu -->
+		</div>
+	</div>
+
+    <div class="servc">
+    	<div class="container">
+    	    <h3>Account Information</h3>
+    		<div class="servc-grids">
+				<div class="col-md-6 servc-grid">
+					<div class="col-xs-3 servc-grid-left">
+						<span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+					</div>
+					<div class="col-xs-9 servc-grid-left">
+						<h4 style="margin-top:1em;">User Name</h4>
+						<p> <?php echo $_SESSION['user_name'];?></p>
+						<h4 style="margin-top:1em;">User Email</h4>
+						<p> <?php echo $_SESSION['user_email'];?></p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+    		</div>
+    		<!-- <h3>User Preference</h3> -->
+			<div class="col-md-6 servc-grid">
+				<div class="col-xs-3 servc-grid-left">
+					<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+				</div>
+				<div class="col-xs-9 servc-grid-left">
+					<h4 style="margin-top:1em;">Taste</h4>
+					<p><?php echo $_SESSION['taste']?></p>
+					<h4 style="margin-top:1em;">Hates</h4>
+					<p><?php echo $_SESSION['hate']?></p>
+					<h4 style="margin-top:1em;">Favorites</h4>
+					<p><?php echo $_SESSION['favourite']?></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div align='right' class="more">
+					<a  href="Account_edit.php">Edit</a>
+					<!--<a  href="savePosition.php?lat=3&lng=4">Test</a>-->
+			</div>
+    	</div>
+    </div>
+
+	<div class="service">
+		<div class="container">
+		<h3>History</h3>
+		
+		    <!-- --------------------First history item-------------------------------->
+			<div class="service-grids">
+				<div class="col-md-4 service-grid">
+				    <!--src= <?php echo $_SESSION['r_rec_ima'] ?>-->
+					<img src=<?php 
+            					$db_con= new mysqli("localhost", "queenoflibra_ruixia2", "Aptx4869", "queenoflibra_CS411Database");
+            					if (!$db_con->set_charset("utf8")) {
+                                $db_con->set_charset("utf8");
+                                 }  
+            					$sql  = "SELECT *
+                                        FROM restaurants
+                                        WHERE name = 
+                                        '".array_slice($_SESSION["his_rn"], 0)[0]."'
+                                        ";
+                                
+                                $result = $db_con->query($sql);
+                                $row = $result->fetch_object();
+                                
+                                if($row!==null){
+                                echo $row->image_url;
+                                }else{
+                                echo "images/2.png";
+                                }
+  			
+					?> alt=" " class="img-responsive" height="250" width="250"/>
+					<h4><?php echo "Date: "; 
+					    if(empty(!$_SESSION["his_date"])){
+					        echo array_slice($_SESSION["his_date"], 0)[0];
+					        
+					         
+					        
+					    }else{
+					        echo "MM-DD-YY";
+					       
+					    }
+					    
+					?></h4>
+					<!--<form  id='log_out' action='query1.php', method="post">-->
+					<!--		<input name='logout_button' type="submit" value="Log Out">-->
+					<!--	</form>-->
+				
+					<div class="service-hov">
+					    
+						<h5><?php 
+						    if(!empty($_SESSION["his_rn"])){
+					            echo array_slice($_SESSION["his_rn"], 0)[0];
+					        }else{
+					            echo "Name of restaurant";
+					        }
+						    
+						    ?></h5>
+						    <a href="Account.php?attitute=1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[0];?>"><img src="images/like.png" height="35" width="35"></a>
+						    <a href="Account.php?attitute=-1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[0];?>"><img src="images/dislike.png" height="35" width="35"></a>
+						    <a href="Account.php?delete=1&date=<?php echo array_slice($_SESSION["his_date"], 0)[0];?>&object=<?php echo array_slice($_SESSION["his_rn"],0)[0];?>"><img src="images/delete.png" height="35" width="35"></a>
+						    
+						<!--<p>Address of restaurant</p>-->
+					</div>
+ 				</div>
+ 			</div>
+ 			<!---------------------------------- End First history item---------------------------------->
+ 			
+			<!---------------------------------- Second history item---------------------------------->
+			<div class="service-grids">
+				<div class="col-md-4 service-grid">
+				    <!--src= <?php echo $_SESSION['r_rec_ima'] ?>-->
+					<img src=<?php 
+            					$db_con= new mysqli("localhost", "queenoflibra_ruixia2", "Aptx4869", "queenoflibra_CS411Database");
+            					if (!$db_con->set_charset("utf8")) {
+                                $db_con->set_charset("utf8");
+                                 }  
+            					$sql  = "SELECT *
+                                        FROM restaurants
+                                        WHERE name = 
+                                        '".array_slice($_SESSION["his_rn"], 0)[1]."'
+                                        ";
+                                $result = $db_con->query($sql);
+                                $row = $result->fetch_object();
+                                
+                                if($row!==null){
+                                echo $row->image_url;
+                                }else{
+                                echo "images/2.png";
+                                }
+  			
+					?> alt=" " class="img-responsive" height="250" width="250"/>
+					<h4><?php echo "Date: "; 
+					    if(sizeof($_SESSION["his_date"])>=2){
+					        echo array_slice($_SESSION["his_date"], 0)[1];
+					    }else{
+					        echo "MM-DD-YY";
+					    }
+					    
+					?></h4>
+				
+					<div class="service-hov">
+					    
+						<h5><?php 
+						    if(sizeof($_SESSION["his_rn"])>=2){
+					            echo array_slice($_SESSION["his_rn"], 0)[1];
+					        }else{
+					            echo "Name of restaurant";
+					        }
+						    
+						    ?></h5>
+						    <a href="Account.php?attitute=1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[1];?>"><img src="images/like.png" height="35" width="35"></a>
+						    <a href="Account.php?attitute=-1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[1];?>"><img src="images/dislike.png" height="35" width="35"></a>
+						    <a href="Account.php?delete=1&date=<?php echo array_slice($_SESSION["his_date"], 0)[1];?>&object=<?php echo array_slice($_SESSION["his_rn"],0)[1];?>"><img src="images/delete.png" height="35" width="35"></a>
+						<!--<p>Address of restaurant</p>-->
+					</div>
+ 				</div>
+ 			</div>
+ 			<!---------------------------------- End Second history item---------------------------------->
+ 			
+ 			<!---------------------------------- Third history item---------------------------------->
+			<div class="service-grids">
+				<div class="col-md-4 service-grid">
+				    <!--src= <?php echo $_SESSION['r_rec_ima'] ?>-->
+					<img src=<?php 
+            					$db_con= new mysqli("localhost", "queenoflibra_ruixia2", "Aptx4869", "queenoflibra_CS411Database");
+            					if (!$db_con->set_charset("utf8")) {
+                                $db_con->set_charset("utf8");
+                                 }  
+            					$sql  = "SELECT *
+                                        FROM restaurants
+                                        WHERE name = 
+                                        '".array_slice($_SESSION["his_rn"], 0)[2]."'
+                                        ";
+                                $result = $db_con->query($sql);
+                                $row = $result->fetch_object();
+                                
+                                if($row!==null){
+                                echo $row->image_url;
+                                }else{
+                                echo "images/2.png";
+                                }
+  			
+					?> alt=" " class="img-responsive" height="250" width="250"/>
+					<h4><?php echo "Date: "; 
+					    if(sizeof($_SESSION["his_date"])>=3){
+					        echo array_slice($_SESSION["his_date"], 0)[2];
+					    }else{
+					        echo "MM-DD-YY";
+					    }
+					    
+					?></h4>
+				
+					<div class="service-hov">
+					    
+						<h5><?php 
+						    if(sizeof($_SESSION["his_rn"])>=3){
+					            echo array_slice($_SESSION["his_rn"], 0)[2];
+					        }else{
+					            echo "Name of restaurant";
+					        }
+						    
+						    ?></h5>
+						    <a href="Account.php?attitute=1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[2];?>"><img src="images/like.png" height="35" width="35"></a>
+						    <a href="Account.php?attitute=-1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[2];?>"><img src="images/dislike.png" height="35" width="35"></a>
+						    <a href="Account.php?delete=1&date=<?php echo array_slice($_SESSION["his_date"], 0)[2];?>&object=<?php echo array_slice($_SESSION["his_rn"],0)[2];?>"><img src="images/delete.png" height="35" width="35"></a>
+						<!--<p>Address of restaurant</p>-->
+					</div>
+ 				</div>
+ 			</div>
+ 			<!---------------------------------- End Third history item---------------------------------->
+ 			
+ 			<!---------------------------------- Fourth history item---------------------------------->
+			<div class="service-grids">
+				<div class="col-md-4 service-grid">
+				    <!--src= <?php echo $_SESSION['r_rec_ima'] ?>-->
+					<img src=<?php 
+            					$db_con= new mysqli("localhost", "queenoflibra_ruixia2", "Aptx4869", "queenoflibra_CS411Database");
+            					if (!$db_con->set_charset("utf8")) {
+                                $db_con->set_charset("utf8");
+                                 }  
+            					$sql  = "SELECT *
+                                        FROM restaurants
+                                        WHERE name = 
+                                        '".array_slice($_SESSION["his_rn"], 0)[3]."'
+                                        ";
+                                $result = $db_con->query($sql);
+                                $row = $result->fetch_object();
+                                
+                                if($row!==null){
+                                echo $row->image_url;
+                                }else{
+                                echo "images/2.png";
+                                }
+  			
+					?> alt=" " class="img-responsive" height="250" width="250"/>
+					<h4><?php echo "Date: "; 
+					    if(sizeof($_SESSION["his_date"])>=4){
+					        echo array_slice($_SESSION["his_date"], 0)[3];
+					    }else{
+					        echo "MM-DD-YY";
+					    }
+					    
+					?></h4>
+				
+					<div class="service-hov">
+					    
+						<h5><?php 
+						    if(sizeof($_SESSION["his_rn"])>=4){
+					            echo array_slice($_SESSION["his_rn"], 0)[3];
+					        }else{
+					            echo "Name of restaurant";
+					        }
+						    
+						    ?></h5>
+						    <a href="Account.php?attitute=1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[3];?>"><img src="images/like.png" height="35" width="35"></a>
+						    <a href="Account.php?attitute=-1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[3];?>"><img src="images/dislike.png" height="35" width="35"></a>
+						    <a href="Account.php?delete=1&date=<?php echo array_slice($_SESSION["his_date"], 0)[3];?>&object=<?php echo array_slice($_SESSION["his_rn"],0)[3];?>"><img src="images/delete.png" height="35" width="35"></a>
+						<!--<p>Address of restaurant</p>-->
+					</div>
+ 				</div>
+ 			</div>
+ 			<!---------------------------------- End Fourth history item---------------------------------->
+ 			
+ 			<!---------------------------------- Fifth history item---------------------------------->
+			<div class="service-grids">
+				<div class="col-md-4 service-grid">
+				    <!--src= <?php echo $_SESSION['r_rec_ima'] ?>-->
+					<img src=<?php 
+            					$db_con= new mysqli("localhost", "queenoflibra_ruixia2", "Aptx4869", "queenoflibra_CS411Database");
+            					if (!$db_con->set_charset("utf8")) {
+                                $db_con->set_charset("utf8");
+                                 }  
+            					$sql  = "SELECT *
+                                        FROM restaurants
+                                        WHERE name = 
+                                        '".array_slice($_SESSION["his_rn"], 0)[4]."'
+                                        ";
+                                $result = $db_con->query($sql);
+                                $row = $result->fetch_object();
+                                
+                                if($row!==null){
+                                echo $row->image_url;
+                                }else{
+                                echo "images/2.png";
+                                }
+  			
+					?> alt=" " class="img-responsive" height="250" width="250"/>
+					<h4><?php echo "Date: "; 
+					    if(sizeof($_SESSION["his_date"])>=5){
+					        echo array_slice($_SESSION["his_date"], 0)[4];
+					    }else{
+					        echo "MM-DD-YY";
+					    }
+					    
+					?></h4>
+				
+					<div class="service-hov">
+					    
+						<h5><?php 
+						    if(sizeof($_SESSION["his_rn"])>=5){
+					            echo array_slice($_SESSION["his_rn"], 0)[4];
+					        }else{
+					            echo "Name of restaurant";
+					        }
+						    
+						    ?></h5>
+						    <a href="Account.php?attitute=1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[4];?>"><img src="images/like.png" height="35" width="35"></a>
+						    <a href="Account.php?attitute=-1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[4];?>"><img src="images/dislike.png" height="35" width="35"></a>
+						    <a href="Account.php?delete=1&date=<?php echo array_slice($_SESSION["his_date"], 0)[4];?>&object=<?php echo array_slice($_SESSION["his_rn"],0)[4];?>"><img src="images/delete.png" height="35" width="35"></a>
+						<!--<p>Address of restaurant</p>-->
+					</div>
+ 				</div>
+ 			</div>
+ 			<!---------------------------------- End Fifth history item---------------------------------->
+ 			
+ 			<!---------------------------------- Sixth history item---------------------------------->
+			<div class="service-grids">
+				<div class="col-md-4 service-grid">
+				    <!--src= <?php echo $_SESSION['r_rec_ima'] ?>-->
+					<img src=<?php 
+            					$db_con= new mysqli("localhost", "queenoflibra_ruixia2", "Aptx4869", "queenoflibra_CS411Database");
+            					if (!$db_con->set_charset("utf8")) {
+                                $db_con->set_charset("utf8");
+                                 }  
+            					$sql  = "SELECT *
+                                        FROM restaurants
+                                        WHERE name = 
+                                        '".array_slice($_SESSION["his_rn"], 0)[5]."'
+                                        ";
+                                $result = $db_con->query($sql);
+                                $row = $result->fetch_object();
+                                
+                                if($row!==null){
+                                echo $row->image_url;
+                                }else{
+                                echo "images/2.png";
+                                }
+  			
+					?> alt=" " class="img-responsive" height="250" width="250"/>
+					<h4><?php echo "Date: "; 
+					    if(sizeof($_SESSION["his_date"])>=6){
+					        echo array_slice($_SESSION["his_date"], 0)[5];
+					    }else{
+					        echo "MM-DD-YY";
+					    }
+					    
+					?></h4>
+				
+					<div class="service-hov">
+					    
+						<h5><?php 
+						    if(sizeof($_SESSION["his_rn"])>=6){
+					            echo array_slice($_SESSION["his_rn"], 0)[5];
+					        }else{
+					            echo "Name of restaurant";
+					        }
+						    
+						    ?></h5>
+						    <a href="Account.php?attitute=1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[5];?>"><img src="images/like.png" height="35" width="35"></a>
+						    <a href="Account.php?attitute=-1&object=<?php echo array_slice($_SESSION["his_rn"], 0)[5];?>"><img src="images/dislike.png" height="35" width="35"></a>
+						    <a href="Account.php?delete=1&date=<?php echo array_slice($_SESSION["his_date"], 0)[5];?>&object=<?php echo array_slice($_SESSION["his_rn"],0)[5];?>"><img src="images/delete.png" height="35" width="35"></a>
+						<!--<p>Address of restaurant</p>-->
+					</div>
+ 				</div>
+ 			</div>
+ 		    <!---------------------------------- End Sixth history item---------------------------------->
+		</div>	
+	</div>
+
+
+			
+
+
+
+
+				
+
+			<div class="clearfix"> </div>
+<!-- //single -->
+<!--footer-->
+	<div class="footer">
+		<div class="container">				 	
+			<div class="col-md-2 ftr_navi ftr">
+				<h3>Navigation</h3>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="Login.php">Login</a></li>
+					<li><a href="register.php">Register</a></li>						
+					<li><a href="query1.php">Function</a></li>
+					<li><a href="Account.php">My Account</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 ftr_navi ftr">
+					 <h3>Team Memembers</h3>
+					 <ul>
+						 <li><a href="#">Rui Xia</a></li>
+						 <li><a href="#">Yang Liu</a></li>
+						 <li><a href="#">Anqi Mao</a></li>				
+						 <li><a href="#">Bo Zheng</a></li>
+						
+					 </ul>
+			</div>
+			<div class="col-md-3 get_in_touch ftr">
+				<h3>Get In Touch</h3>
+				<p>Teletubbies</p>
+				<p>University of Illinois, Urbana-Champaign</p>
+				<p>16279043307</p>
+				<a href="mailto:ruixia2@illinois.edu">ruixia2@illinois.edu</a>
+				<p>Copyright &copy; 2017.Teletubbies All rights reserved.<a target="_blank" </a></p>
+			</div>
+			<div class="col-md-4 ftr-logo">
+				<a href="index.html"><h3>Queen of Libra</h3></a>
+				<!-- <ul>
+					<li><a href="#" class="f"> </a></li>
+					<li><a href="#" class="f1"> </a></li>
+					<li><a href="#" class="f2"> </a></li>
+				</ul> -->
+				<p>Our application is designed to help you make decisions for deciding a place for meal, which helps those who has OCD in making food decision. Unlike common recipe recommendation App, we do not simply providing information to you, we are trying to make choice for you. It recommends restaurants for users based on preference Q&A and users' meal history.  </a></p>
+				
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!--footer-->
+</body>
+</html>
